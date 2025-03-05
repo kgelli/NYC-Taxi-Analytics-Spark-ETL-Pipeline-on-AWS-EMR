@@ -22,17 +22,23 @@ This project demonstrates the use of Amazon Elastic Map Reduce (EMR) for process
 
 ## Usage
 
-1. **Connect to EMR cluster**
+1. **Upload to S3**
+  ```bash
+  aws s3 cp spark-etl.py s3://<YOUR-BUCKET>/files/
+  aws s3 cp tripdata.csv s3://<YOUR-BUCKET>/input/
+  ```
+
+2. **Connect to EMR cluster**
    ```bash
    ssh -i [key-pair] hadoop@[emr-master-public-dns-address]
    ```
 
-2. **Submit Spark job locally on EMR**
+3. **Submit Spark job locally on EMR**
    ```bash
    spark-submit spark-etl.py s3://<YOUR-BUCKET>/input/ s3://<YOUR-BUCKET>/output/spark
    ```
 
-3. **Submit Spark job directly from S3**
+4. **Submit Spark job directly from S3**
    ```bash
    spark-submit s3://<bucketname>/files/spark-etl.py s3://<bucketname>/input s3://<bucketname>/output
    ```
