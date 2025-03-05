@@ -23,10 +23,10 @@ This project demonstrates the use of Amazon Elastic Map Reduce (EMR) for process
 ## Usage
 
 1. **Upload to S3**
-  ```bash
-  aws s3 cp spark-etl.py s3://<YOUR-BUCKET>/files/
-  aws s3 cp tripdata.csv s3://<YOUR-BUCKET>/input/
-  ```
+   ```bash
+   aws s3 cp spark-etl.py s3://<YOUR-BUCKET>/files/
+   aws s3 cp tripdata.csv s3://<YOUR-BUCKET>/input/
+   ```
 
 2. **Connect to EMR cluster**
    ```bash
