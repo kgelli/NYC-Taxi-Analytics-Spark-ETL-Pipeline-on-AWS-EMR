@@ -6,7 +6,7 @@ This project demonstrates the use of Amazon Elastic Map Reduce (EMR) for process
 
 ## Architecture
 
-![AWS EMR Architecture](architecture.png)
+![AWS EMR Architecture](Architecture.png)
 
 - **S3**: Source and destination storage
 - **EMR**: Managed Spark cluster
