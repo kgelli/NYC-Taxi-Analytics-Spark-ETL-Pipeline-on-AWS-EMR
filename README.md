@@ -1,8 +1,8 @@
-# AWS EMR Data Processing for Data Engineers
+# NYC Taxi Analytics: Spark ETL Pipeline on AWS EMR
 
 ## Project Summary
 
-This project demonstrates the use of Amazon Elastic Map Reduce (EMR) for processing large datasets using Apache Spark. It includes a Spark script for ETL (Extract, Transform, Load) operations, AWS command line instructions for setting up and managing the EMR cluster, and a dataset for testing and demonstration purposes.
+This project demonstrates the use of Amazon Elastic Map Reduce (EMR) for processing NYC taxi trip data using Apache Spark. It includes a Spark script for ETL (Extract, Transform, Load) operations, SSH command references for connecting to the EMR cluster, and sample Spark job submission commands.
 
 ## Architecture
 
@@ -17,21 +17,24 @@ This project demonstrates the use of Amazon Elastic Map Reduce (EMR) for process
 ## Files
 
 - `spark-etl.py`: Reads data from an input directory, adds a timestamp, and writes the result to an output directory in Parquet format
-- `commands.py`: Contains scripts for AWS EMR cluster setup and management
+- `commands.py`: Contains reference SSH commands for connecting to EMR cluster and examples of Spark job submission commands
 - `tripdata.csv`: Sample NYC taxi data (20,000 records) for testing and demonstration
 
 ## Usage
 
-1. **Upload to S3**
+1. **Connect to EMR cluster**
    ```bash
-   aws s3 cp spark-etl.py s3://<YOUR-BUCKET>/files/
-   aws s3 cp tripdata.csv s3://<YOUR-BUCKET>/input/
+   ssh -i [key-pair] hadoop@[emr-master-public-dns-address]
    ```
 
-2. **Run on EMR**
+2. **Submit Spark job locally on EMR**
    ```bash
-   ssh -i <key-pair.pem> hadoop@<emr-master-dns>
-   spark-submit spark-etl.py s3://<YOUR-BUCKET>/input s3://<YOUR-BUCKET>/output
+   spark-submit spark-etl.py s3://<YOUR-BUCKET>/input/ s3://<YOUR-BUCKET>/output/spark
+   ```
+
+3. **Submit Spark job directly from S3**
+   ```bash
+   spark-submit s3://<bucketname>/files/spark-etl.py s3://<bucketname>/input s3://<bucketname>/output
    ```
 
 ## Output
@@ -45,6 +48,7 @@ This project demonstrates the use of Amazon Elastic Map Reduce (EMR) for process
 - Apache Spark
 - AWS CLI
 - An AWS account with necessary permissions to create and manage EMR clusters
+- SSH key pair for EMR access
 
 ## Conclusion
 
